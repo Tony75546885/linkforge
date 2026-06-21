@@ -41,3 +41,6 @@
 {"type":"edit","file":"/Users/antonisetkowicz/Projects/linkforge/src/lib/stripe.ts","timestamp":1782071505773,"sessionId":null}
 {"type":"edit","file":"/Users/antonisetkowicz/Projects/linkforge/src/app/api/stripe/checkout/route.ts","timestamp":1782071515185,"sessionId":null}
 {"type":"edit","file":"/Users/antonisetkowicz/Projects/linkforge/src/app/api/stripe/webhook/route.ts","timestamp":1782071518056,"sessionId":null}
+{"type":"edit","file":"/Users/antonisetkowicz/Projects/linkforge/scripts/setup-stripe.sh","timestamp":1782073004132,"sessionId":null}
+{"type":"edit","file":"/Users/antonisetkowicz/Projects/linkforge/src/app/pricing/page.tsx","timestamp":1782073018449,"sessionId":null}
+{"type":"edit","file":"/Users/antonisetkowicz/Projects/linkforge/src/app/pricing/page.tsx","timestamp":1782073023592,"sessionId":null}

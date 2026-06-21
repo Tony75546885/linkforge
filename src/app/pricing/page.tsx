@@ -4,10 +4,28 @@ import Link from 'next/link'
 import { Link2, Check, ArrowLeft } from 'lucide-react'
 import { PLANS } from '@/lib/stripe'
 import toast from 'react-hot-toast'
+import { useState } from 'react'
 
 export default function PricingPage() {
+  const [loading, setLoading] = useState(false)
+
   async function handleUpgrade() {
-    toast.success('Stripe checkout coming soon! Connect your Stripe account to enable payments.')
+    setLoading(true)
+    try {
+      const res = await fetch('/api/stripe/checkout', { method: 'POST' })
+      const data = await res.json()
+
+      if (data.url) {
+        window.location.href = data.url
+        return
+      }
+
+      toast.error(data.error || 'Stripe is not configured yet. Add your Stripe keys in the Render dashboard.')
+    } catch {
+      toast.error('Something went wrong')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -64,9 +82,10 @@ export default function PricingPage() {
             <p className="mt-4 text-gray-600">For professionals and teams</p>
             <button
               onClick={handleUpgrade}
-              className="mt-6 w-full py-3 px-4 rounded-lg bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-500/25"
+              disabled={loading}
+              className="mt-6 w-full py-3 px-4 rounded-lg bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-500/25 disabled:opacity-50"
             >
-              Upgrade to Pro — $9/mo
+              {loading ? 'Redirecting...' : 'Upgrade to Pro — $9/mo'}
             </button>
             <ul className="mt-8 space-y-4">
               {PLANS.pro.features.map((f) => (
